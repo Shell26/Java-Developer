@@ -595,8 +595,8 @@ __Reference counting__ (подсчёт ссылок). Суть этого под
 ---
 Для очистки памяти от мусора существуют два основных метода:
 
-+ _Copying collectors_
-+ _Mark-and-sweep_
++ _Copying collectors_ Young generation
++ _Mark-and-sweep_ Old generation
 
 При __copying collectors__ подходе память делится на две части «from-space» и «to-space», при этом сам принцип работы такой:
 
