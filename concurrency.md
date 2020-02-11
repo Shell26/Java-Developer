@@ -1,9 +1,9 @@
 [Вопросы для собеседования](README.md)
 
 Теория:
-Многопоточность в Java: [основы](https://www.youtube.com/watch?time_continue=104&v=zxZ0BXlTys0&feature=emb_logo)
-Многопоточность в Java: [средства стандартной библиотеки](https://www.youtube.com/watch?v=umTVNoG3760&feature=emb_logo)
-Advanced Java - [#1](https://www.youtube.com/watch?v=s032s29-NUU&list=PL6jg6AGdCNaXo06LjCBmRao-qJdf38oKp)
+[Многопоточность в Java: основы](https://www.youtube.com/watch?time_continue=104&v=zxZ0BXlTys0&feature=emb_logo)<br>
+[Многопоточность в Java: средства стандартной библиотеки](https://www.youtube.com/watch?v=umTVNoG3760&feature=emb_logo)<br>
+[Advanced Java - #1](https://www.youtube.com/watch?v=s032s29-NUU&list=PL6jg6AGdCNaXo06LjCBmRao-qJdf38oKp)<br>
 
 # Многопоточность
 + [Расскажите о модели памяти Java?](#Расскажите-о-модели-памяти-java)
