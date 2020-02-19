@@ -392,6 +392,7 @@ __EntityManager__ – интерфейс, вызывая методы котор
 + Общие операции над EntityManager или всеми Entities: close, isOpen, getProperties, setProperty, clear.
 
 __Entity__ – это постоянные объекты, хранящиеся в виде записей в базе данных.
+
 __EntityTransaction__ – интерфейс для работы с транзакциями. Он имеет непосредственное отношение к EntityManager. Для каждого EntityManager операции поддерживаются классом EntityTransaction.
 
 Методы: 
@@ -403,6 +404,7 @@ __EntityTransaction__ – интерфейс для работы с транза
 + setRollbackOnly() - Mark the current resource transaction so that the only possible outcome of the transaction is for the transaction to be rolled back.
 
 __Persistence__ – Этот класс содержит статические методы для получения экземпляра EntityManagerFactory.
+
 __Query__ – Этот интерфейс реализуется каждым поставщиком JPA для получения реляционных объектов, соответствующих критериям.
 
 [к оглавлению](#jdbc)
