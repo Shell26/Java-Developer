@@ -369,8 +369,20 @@ JPA указывает что она может работать как с св�
 
 [к оглавлению](#jdbc)
 ## Основные классы и интерфейсы JPA
-1) EntityManagerFactory – фабричный класс EntityManager. Он создает и управляет несколькими экземплярами EntityManager. Создание EntityManagerFactory  довольно дорогая операция, поэтому обычно её создают один раз и на всё приложение.
-2) EntityManager – интерфейс, вызывая методы которого можно управлять сущностями. В отличие от фабрики, достаточно легковесен и поэтому зачастую создаётся по месту использования и в больших количествах. Если проводить аналогию с обычным JDBC, то EntityManagerFactory будет аналогом DataSource, а EntityManager аналогом Connection.
+__EntityManagerFactory__ – фабричный класс EntityManager. Он создает и управляет несколькими экземплярами EntityManager. Создание EntityManagerFactory  довольно дорогая операция, поэтому обычно её создают один раз и на всё приложение.
+
+Методы:
++ createEntityManager()
++ createEntityManager(Map map) - Create a new application-managed EntityManager with the specified Map of properties.
++ close() - Close the factory, releasing any resources that it holds.
++ getCache() - Access the cache that is associated with the entity manager factory (the "second level cache").
++ getCriteriaBuilder() - Return an instance of CriteriaBuilder for the creation of CriteriaQuery objects.
++ getMetamodel() - Return an instance of Metamodel interface for access to the metamodel of the persistence unit.
++ getPersistenceUnitUtil() - Return interface providing access to utility methods for the persistence unit.
++ getProperties() - Get the properties and associated values that are in effect for the entity manager factory.
++ isOpen() - Indicates whether the factory is open.
+
+__EntityManager__ – интерфейс, вызывая методы которого можно управлять сущностями. В отличие от фабрики, достаточно легковесен и поэтому зачастую создаётся по месту использования и в больших количествах. Если проводить аналогию с обычным JDBC, то EntityManagerFactory будет аналогом DataSource, а EntityManager аналогом Connection.
 
 Основные методы:
 + Для операций над Entity: persist (добавление Entity под управление JPA), merge (обновление), remove (удаления), refresh (обновление данных), detach (удаление из управление JPA), lock (блокирование Enity от изменений в других thread).
@@ -379,10 +391,19 @@ JPA указывает что она может работать как с св�
 + Работа с EntityGraph: createEntityGraph, getEntityGraph
 + Общие операции над EntityManager или всеми Entities: close, isOpen, getProperties, setProperty, clear.
 
-3) Entity – это постоянные объекты, хранящиеся в виде записей в базе данных.
-4) EntityTransaction – Он имеет непосредственное отношение к EntityManager. Для каждого EntityManager операции поддерживаются классом EntityTransaction.
-5) Persistence – Этот класс содержит статические методы для получения экземпляра EntityManagerFactory.
-6) Query – Этот интерфейс реализуется каждым поставщиком JPA для получения реляционных объектов, соответствующих критериям.
+__Entity__ – это постоянные объекты, хранящиеся в виде записей в базе данных.
+__EntityTransaction__ – интерфейс для работы с транзакциями. Он имеет непосредственное отношение к EntityManager. Для каждого EntityManager операции поддерживаются классом EntityTransaction.
+
+Методы: 
++ begin() - Start a resource transaction.
++ commit() - Commit the current resource transaction, writing any unflushed changes to the database.
++ getRollbackOnly() - Determine whether the current resource transaction has been marked for rollback.
++ isActive() - Indicate whether a resource transaction is in progress.
++ rollback() - Roll back the current resource transaction.
++ setRollbackOnly() - Mark the current resource transaction so that the only possible outcome of the transaction is for the transaction to be rolled back.
+
+__Persistence__ – Этот класс содержит статические методы для получения экземпляра EntityManagerFactory.
+__Query__ – Этот интерфейс реализуется каждым поставщиком JPA для получения реляционных объектов, соответствующих критериям.
 
 [к оглавлению](#jdbc)
 ## 
