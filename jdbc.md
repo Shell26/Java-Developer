@@ -503,7 +503,7 @@ NEW   ———— persist(entity) —————>  MANAGED <————— cr
                                     .  |                                                    .
                                    / \ |                                                   / \
                                     |  |                                                    |
-                     remove(entity) |  |  persist(entity)                                   |
+                    persist(entity) |  |  remove(entity)                                    |
                                     |  |                                                    |
                                     | \ /                                                   |
                                     |  '                                                    |
