@@ -1,5 +1,7 @@
 [Вопросы для собеседования](README.md)
 
+Список вопросов от Артура Садреева: https://drive.google.com/open?id=11oMXqQNX3vINoPlaEGQu6FSnA-etFVPz4fBh9zead7I
+
 # JDBC
 + [Что такое ORM?](#Что-такое-orm)
 + [Что такое JDBC?](#Что-такое-jdbc)
