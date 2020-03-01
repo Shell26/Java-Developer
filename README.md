@@ -1,27 +1,26 @@
 # Вопросы для собеседования на Java Developer
 
-+ [ООП](#ООП) ![icon][done]
-+ [Java Core](#java-core) ![icon][done]
-+ [Java Collections Framework](#java-collections) ![icon][done]
-+ [Java 8](#java-8) ![icon][done]
-+ [Потоки ввода-вывода в Java](#Потоки-вводавывода-в-java) ![icon][done]
-+ [Сериализация](#Сериализация) ![icon][done]
-+ [Многопоточность](#Многопоточность) ![icon][done]
-+ [Servlets, JSP, JSTL](#servlets-jsp-jstl) ![icon][done]
-+ [Базы данных](#Базы-данных) ![icon][done]
-+ [SQL](#sql) ![icon][done]
-+ [JDBC](#jdbc) ![icon][done]
-+ [Тестирование](#Тестирование) ![icon][done]
-+ [Журналирование](#Журналирование) ![icon][done]
-+ [UML](#uml) ![icon][done]
-+ [XML](#xml) ![icon][done]
-+ [Шаблоны проектирования](#Шаблоны-проектирования) ![icon][done]
-+ [Основы HTML](#Основы-html) ![icon][done]
-+ [Основы CSS](#Основы-css) ![icon][done]
-+ [Основы Web](#Основы-web) ![icon][done]
-+ [Дополнительные материалы](#Дополнительные-материалы) ![icon][done]
-
-[done]:done.png
++ [ООП](#ООП) 
++ [Java Core](#java-core) 
++ [Java Collections Framework](#java-collections) 
++ [Java 8](#java-8) 
++ [Потоки ввода-вывода в Java](#Потоки-вводавывода-в-java) 
++ [Сериализация](#Сериализация) 
++ [Многопоточность](#Многопоточность) 
++ [Servlets, JSP, JSTL](#servlets-jsp-jstl)
++ [Базы данных](#Базы-данных) 
++ [SQL](#sql) 
++ [JDBC](#jdbc) 
++ [Spring](#spring)
++ [Тестирование](#Тестирование) 
++ [Журналирование](#Журналирование) 
++ [UML](#uml) 
++ [XML](#xml)
++ [Шаблоны проектирования](#Шаблоны-проектирования) 
++ [Основы HTML](#Основы-html) 
++ [Основы CSS](#Основы-css)
++ [Основы Web](#Основы-web)
++ [Дополнительные материалы](#Дополнительные-материалы)
 
 ## ООП
 + [Что такое _ООП_?](oop.md#Что-такое-ООП)
@@ -608,6 +607,53 @@
 + [Как закрыть соединение с базой данных?](jdbc.md#Как-закрыть-соединение-с-базой-данных)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
+
+## Spring 
++ [Что такое Spring?](spring.md#Что-такое-spring)
++ [Особенности и преимущества Spring Framework?](spring.md#Особенности-и-преимущества-spring-framework)
++ [Spring контейнеры](spring.md#Spring-контейнеры)
++ [Жизненный цикл Context](spring.md#Жизненный-цикл-context)
++ [Как завершить работу контекста](spring.md#Как-завершить-работу-контекста)
++ [Bean](spring.md#Bean)
++ [Как настроить класс как Spring Bean](spring.md#Как-настроить-класс-как-spring-bean)
++ [Статический Bean](spring.md#Статический-bean)
++ [Inversion of Control](spring.md#Inversion-of-control)
++ [Dependency Injection (DI)](spring.md#Dependency-injection)
++ [Как реализуется DI в Spring Framework?](spring.md#Как-реализуется-di-в-spring-framework)
++ [Связывание и @Autowired](spring.md#Связывание-и-@Autowired)
++ [MVC](spring.md#mvc)
++ [Связывание форм](spring.md#Связывание-форм)
++ [Исключения в Spring MVC](spring.md#Исключения-spring-mvc)
++ [Локализация в приложениях Spring MVC](spring.md#Локализация-в-приложениях-spring-mvc)
++ [Spring Interceptor](spring.md#Spring-interceptor)
++ [Реактивное программирование](spring.md#Реактивное-программирование)
++ [Паттерны в Spring Framework](spring.md#Паттерны-в-spring-framework)
++ [AOP и составные части](spring.md#AOP-и-составные-части)
++ [Spring AOP vs ASPECTJ](spring.md#Spring-aop-vs-aspectj)
++ [Некоторые частые аннотации Spring](spring.md#Некоторые-частые-аннотации-spring) 
++ [Различия @Component, @Service, @Repository, @Controller](spring.md#Различия-component-service-repository-controller)
++ [Различия @Controller и @RestController](spring.md#Различия-controller-и-rRestController)
++ [@Qualifier and @Primary](spring.md#@Qualifier-and-@Primary)
++ [@Profile](spring.md#Profile)
++ [@LookUp](spring.md#LookUp)
++ [@Target и @Retention](spring.md#@Target-и-@Retention)
++ [@Autowired vs @Resource vs @Inject](spring.md#@Autowired-vs-resource-vs-inject)
++ [Как управлять транзакциями в Spring](spring.md#Как-управлять-транзакциями-в-spring)
++ [Как Spring работает с DAO](spring.md#Как-spring-работает-с-dao)
++ [Model vs ModelMap vs ModelAndView](spring.md#Model-vs-modelMap-vs-modelAndView)
++ [В чем разница между model.put() и model.addAttribute()?](spring.md#В-чем-разница-между-model.put()-и-model.addAttribute())
++ [PreparedStatementCreator](spring.md#PreparedStatementCreator)
++ [SOAP vs REST](spring.md#SOAP-vs-REST)
++ [Spring Data](spring.md#Spring-data)
++ [Конфигурация Spring Data](spring.md#Конфигурация-Spring-data)
++ [Spring Security](spring.md#Spring-security)
++ [Spring Boot](spring.md#Spring-boot)
++ [Starter packs](spring.md#Starter-packs)
++ [Как внедрить java.util.Properties в Spring Bean](spring.md#Как-внедрить-java.util.Properties-в-spring-bean)
++ [Что нового в Spring 5](spring.md#Что-нового-в-spring-5)
++ [RestTemplate и JDBCTemplate](spring.md#RestTemplate-и-JDBCTemplate)
++ [Socket](spring.md#Socket)
+[к оглавлению](spring.md#Вопросы-для-собеседования-на-java-developer)
 
 ## Тестирование
 + [Что такое _«модульное тестирование»_?](test.md#Что-такое-модульное-тестирование)
