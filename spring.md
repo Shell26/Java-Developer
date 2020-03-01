@@ -6,6 +6,8 @@
 + [Что такое Spring?](#Что-такое-spring)
 + [Особенности и преимущества Spring Framework?](#Особенности-и-преимущества-spring-framework)
 + [Spring контейнеры](#Spring-контейнеры)
++ [Жизненный цикл Context](#Жизненный-цикл-context)
++ [Как завершить работу контекста](#Как-завершить-работу-контекста)
 + [Bean](#Bean)
 + [Как настроить класс как Spring Bean](#Как-настроить-класс-как-spring-bean)
 + [Статический Bean](#Статический-bean)
@@ -14,6 +16,7 @@
 + [Как реализуется DI в Spring Framework?](#Как-реализуется-di-в-spring-framework)
 + [Связывание и @Autowired](#Связывание-и-@Autowired)
 + [MVC](#mvc)
++ [Связывание форм](#Связывание-форм)
 + [Исключения в Spring MVC](#Исключения-spring-mvc)
 + [Локализация в приложениях Spring MVC](#Локализация-в-приложениях-spring-mvc)
 + [Spring Interceptor](#Spring-interceptor)
@@ -22,18 +25,20 @@
 + [AOP и составные части](#AOP-и-составные-части)
 + [Spring AOP vs ASPECTJ](#Spring-aop-vs-aspectj)
 + [Некоторые частые аннотации Spring](#Некоторые-частые-аннотации-spring) 
++ [Различия @Component, @Service, @Repository, @Controller](#Различия-component-service-repository-controller)
++ [Различия @Controller и @RestController](#Различия-controller-и-rRestController)
 + [@Qualifier and @Primary](#@Qualifier-and-@Primary)
 + [@Profile](#Profile)
 + [@LookUp](#LookUp)
 + [@Target и @Retention](#@Target-и-@Retention)
-+ [Различия @Component, @Service, @Repository, @Controller](#Различия-@Component-@Service-@Repository-@Controller)
-+ [Различия @Controller и @RestController](#Различия-@Controller-и-@RestController)
++ [@Autowired vs @Resource vs @Inject](#@Autowired-vs-resource-vs-inject)
 + [Как управлять транзакциями в Spring](#Как-управлять-транзакциями-в-spring)
 + [Как Spring работает с DAO](#Как-spring-работает-с-dao)
 + [Model vs ModelMap vs ModelAndView](#Model-vs-modelMap-vs-modelAndView)
 + [В чем разница между model.put() и model.addAttribute()?](#В-чем-разница-между-model.put()-и-model.addAttribute())
 + [PreparedStatementCreator](#PreparedStatementCreator)
 + [SOAP vs REST](#SOAP-vs-REST)
++ [Spring Data](#Spring-data)
 + [Spring Security](#Spring-security)
 + [Spring Boot](#Spring-boot)
 + [Starter packs](#Starter-packs)
@@ -481,9 +486,9 @@ __ПРИМЕР__ - Обычно бины в приложении Spring явля
 ## @Autowired vs @Resource vs @Inject
 Аннотации для внедрения зависимостей.
 
-@Resource (java) преимущественно пытается получить зависимость по имени. Имя извлекается из имени аннотируемого сеттера или поля, либо берется из параметра name.
+@Resource (java) пытается получить зависимость: по имени, по типу, затем по описанию. Имя извлекается из имени аннотируемого сеттера или поля, либо берется из параметра name.
 
-@Inject (java) или @Autowired (spring) в первую очередь пытается подключить зависимость по типу.
+@Inject (java) или @Autowired (spring) в первую очередь пытается подключить зависимость по типу, затем по описанию и только потом по имени.
 
 ## Как управлять транзакциями в Spring
 Spring поддерживает два типа управления транзакциями:
