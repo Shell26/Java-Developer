@@ -20,7 +20,7 @@
 + [Как избежать `ConcurrentModificationException` во время перебора коллекции?](#Как-избежать-concurrentmodificationexception-во-время-перебора-коллекции)
 + [Какая коллекция реализует дисциплину обслуживания FIFO?](#Какая-коллекция-реализует-дисциплину-обслуживания-fifo)
 + [Какая коллекция реализует дисциплину обслуживания FILO?](#Какая-коллекция-реализует-дисциплину-обслуживания-filo)
-+ [Comparator vs Comparable](#Comparator vs Comparable)
++ [Comparator vs Comparable](#Comparator-vs-Comparable)
 + [Чем отличается `ArrayList` от `Vector`?](#Чем-отличается-arraylist-от-vector)
 + [Зачем добавили `ArrayList`, если уже был `Vector`?](#Зачем-добавили-arraylist-если-уже-был-vector)
 + [Чем отличается `ArrayList` от `LinkedList`? В каких случаях лучше использовать первый, а в каких второй?](#Чем-отличается-arraylist-от-linkedlist-В-каких-случаях-лучше-использовать-первый-а-в-каких-второй)
