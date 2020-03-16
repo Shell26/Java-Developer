@@ -610,15 +610,36 @@ Stream
 [к оглавлению](#java-8)
 
 ## Для чего в стримах предназначены методы `flatMap()`, `flatMapToInt()`, `flatMapToDouble()`, `flatMapToLong()`?
-Метод `flatMap()` похож на map, но может создавать из одного элемента несколько. Таким образом, каждый объект будет преобразован в ноль, один или несколько других объектов, поддерживаемых потоком.  Наиболее очевидный способ применения этой операции — преобразование элементов контейнера при помощи функций, которые возвращают контейнеры.
+Метод `flatMap()` похож на map, но может преобразовывать из нескольких элементов (стримов, массивов, коллекций) один. Например можно преобразовать двумерный массив в одномерный:
 
+```java
+int[][] arr = {{1,2}, {5,6}, {3,4}};
+Arrays.stream(arr).flatMapToInt(x -> Arrays.stream(x)).forEach(System.out::println);
+```
+
+Или из стрима листов получить один стрим:
+```java
+public static void main(String[] args) {
+    List<Human> humans = asList(
+            new Human("Sam", asList("Buddy", "Lucy")),
+            new Human("Bob", asList("Frankie", "Rosie")),
+            new Human("Marta", asList("Simba", "Tilly")));
+ 
+    List<String> petNames = humans.stream()
+            .map(human -> human.getPets()) //преобразовываем Stream<Human> в Stream<List<Pet>>
+            .flatMap(pets -> pets.stream())//"разворачиваем" Stream<List<Pet>> в Stream<Pet>
+            .collect(Collectors.toList());
+ 
+    System.out.println(petNames); // output [Buddy, Lucy, Frankie, Rosie, Simba, Tilly]
+}
+```
+Или разбить строку по буквам:
 ```java
 Stream
     .of("H e l l o", "w o r l d !")
     .flatMap((p) -> Arrays.stream(p.split(" ")))
     .toArray(String[]::new);//["H", "e", "l", "l", "o", "w", "o", "r", "l", "d", "!"]
 ```
-
 `flatMapToInt()`, `flatMapToDouble()`, `flatMapToLong()` - это аналоги `flatMap()`, возвращающие соответствующий числовой стрим.
 
 [к оглавлению](#java-8)
