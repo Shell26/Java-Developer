@@ -1,5 +1,7 @@
 [Вопросы для собеседования](README.md)
 
+https://tproger.ru/articles/sql-interview-questions/
+
 # SQL
 + [Что такое _«SQL»_?](#Что-такое-sql)
 + [Какие существуют операторы SQL?](#Какие-существуют-операторы-sql)
