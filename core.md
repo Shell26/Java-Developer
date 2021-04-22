@@ -127,7 +127,7 @@ __JDK__, Java Development Kit (Комплект разработки на Java) 
 
 Коротко: __JDK__ - среда для разработки программ на Java, включающая в себя __JRE__ - среду для обеспечения запуска Java программ, которая в свою очередь содержит __JVM__ - интерпретатор кода Java программ.
 
-![Image alt](https://github.com/Shell26/Java-Developer/raw/master/Frame 225 (1).jpg)
+![Image alt](https://github.com/Shell26/Java-Developer/raw/master/Core1.jpg) 
 
 [к оглавлению](#java-core)
 
