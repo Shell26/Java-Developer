@@ -99,7 +99,7 @@ _«Коллекция»_ - это структура данных, набор к
 На вершине иерархии в Java Collection Framework располагаются 2 интерфейса: `Collection` и `Map`. Эти интерфейсы разделяют все коллекции, входящие во фреймворк на две части по типу хранения данных: простые последовательные наборы элементов и наборы пар «ключ — значение» соответственно.
 
 
-![Image alt](https://github.com/Shell26/Java-Developer/raw/master/img/Core4.jpg)
+![Image alt](https://github.com/Shell26/Java-Developer/raw/master/img/Core4.png)
 
 Интерфейс `Collection` расширяют интерфейсы:
 
@@ -129,7 +129,7 @@ _«Коллекция»_ - это структура данных, набор к
   - интерфейс `NavigableMap` 
     - `TreeMap` — реализация основанная на красно-чёрных деревьях. Является упорядоченной и предоставляет возможность управлять порядком элементов в коллекции при помощи объекта `Comparator`, либо сохраняет элементы с использованием «natural ordering».
 
-![Image alt](https://github.com/Shell26/Java-Developer/raw/master/img/Core3.jpg)
+![Image alt](https://github.com/Shell26/Java-Developer/raw/master/img/Core3.png)
 
 [к оглавлению](#java-collections-framework)
 
