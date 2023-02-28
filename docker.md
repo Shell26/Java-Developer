@@ -882,6 +882,214 @@ kubectl apply -f ./deployment-simple.yaml
 
 [к оглавлению](#Docker)
 
-## Kubernetes Pods
+## Kubernetes Services
+__Типы:__
+
++ ClusterIP - IP только внутри K8S Кластера. Выбирается по-умолчанию. Один такой сервис существует всегда, Kubernetes создает его автоматически
++ NodePort - Определенный порт на всех K8S Воркер Нодах
++ ExternalName - DNS CNAME Record
++ LoadBalancer - Только для облачных кластеров (AWS, Google, Azure)
+
+1) Из консоли:
+```java
+kubectl expose deployment name-deploy --type=NodePort --port 80  - создаем Сервис для управлением Деплоем name-deploy, типа NodePort на порту 80
+        kubectl get services  -
+        kubectl delete svc name
+```
+2) Манифест-файл deployment-service.yaml:
+```java
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+    name: my-web-deployment
+    labels:
+        app : my-k8s-application
+spec:
+    replicas: 2              //
+    selector:                //
+        matchLabels:         //
+            project: shell   //Сервис коннектится сюда, а не выше (Девелопмент)
+    template:                //
+        metadata:
+            labels:
+                project: shell
+    spec:
+        containers:
+            - name : shell-web
+              image: httpd:latest
+              ports:
+                - containerPort: 80
+...                     
+apiVersion: v1
+kind: Service
+metadata:
+    name: my-service
+    labels:
+        env   : prod
+        owner : Me
+spec:
+    type: LoadBalancer
+    selector:                         //чем управляет сервис, не Деплоем, а какими Подами
+        project: shell                //выбираем Поды с этим лейблом
+    ports:
+        - name      : app-listener
+          protocol  : TCP
+          port      : 80              //Порт для LoadBalancer
+          targetPort: 80              //Порт для Pod
+```
+
+Запускаем Манифест-файл:
+```java
+kubectl apply -f ./deployment-service.yaml
+```
 
 [к оглавлению](#Docker)
+
+## Kubernetes Ingress Controller
+
+Отдельное приложение, которое позволяет управлять Сервисами внутри Кластера, с помощью одного публичного Сервиса, к которому есть публичный доступ. Вместо создания отдельных публичных Сервисов для каждого приложения внутри Кластера. Ingress Rules позволяют понять, к какому именно Ноду внутри Кластера обращается пользователь 
+
+Было:
+![Image alt](https://github.com/Shell26/Java-Developer/raw/master/img/docker1.png)
+
+Стало:
+![Image alt](https://github.com/Shell26/Java-Developer/raw/master/img/docker2.png)
+
+Ingress Controller нужно подключать отдельно, например:
+https://docs.google.com/spreadsheets/d/191WWNpjJ2za6-nbG4ZoUMXMpUK8KlCIosvQB0f-oq3k/edit#gid=907731238
+
+Деплоим Ingress Controller к Кластеру
+```java
+kubectl apply -f https://projectcontour.io/quickstart/contour.yaml  - адрес зависит от реализации Ingress Controller
+kubectl get services -n projectcontour  - посмотреть Ingress Controller   
+```
+
+Например, у нас в кластере 3 Deployments: web1, web2 и tomcat. Web1 и web2 скалированы по 2 копии. Т.е. у нас висит 3 Деплоя, с 5 Подами (2+2+1)
+```java
+kubectl create deployment web1 --image=dockerhub/web1
+kubectl create deployment web2 --image=dockerhub/web1
+kubectl create deployment tomcat --image=tomcat:8.5.38
+kubectl get deploy
+        
+kubectl scale deployment web1 --replicas 2
+kubectl scale deployment web2 --replicas 2
+kubectl get pods
+```
+
+Создадим 3 Сервиса, для каждого Деплоя.
+```java
+kubectl expose deployment web1 --port=80
+kubectl expose deployment web2 --port=80
+kubectl expose deployment tomcat --port=8080
+kubectl get services -o wide  - чуть больше информации
+```
+Нужно добавить Ingress Rules (ingress-rules.yaml):
+
+```java
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+    name: ingtess-hosts
+
+spec:
+    rules:
+        - host: www.web1.shell.net
+            http:
+                paths:
+                  - backend:
+                    serviceName: web1   //на какой Сервис отправлять клиента, если запрос приходит на этот Хост
+                    servicePort: 80     //на какой Порт отправлять клиента, если запрос приходит на этот Хост
+        
+        - host: www.shell.net      //можно указать путь на страницу, вместо url
+            http:
+                paths: "/web2"
+                - backend:
+                    serviceName: web2
+                    servicePort: 80
+
+        - host: cat.shell.net
+            http:
+                paths:
+                - backend:
+                    serviceName: tomcat
+                    servicePort: 8080
+```
+Запускаем Манифест-файл:
+```java
+kubectl apply -f ./ingress-rules.yaml
+kubectl get ingress
+kubectl describe ingress
+```
+
+[к оглавлению](#Docker)
+
+## Helm Charts
+
+https://helm.sh/
+
+Если мы хотим что-то поменять в уже задеплоенном приложении, например образ, нужно отредактировать yaml файл, запустить команды на деплой Деплоймента и Сервиса. Если опять что-то поменяли, нужно все повторить.
+
+Helm Charts позволяет сделать поля в yaml файле динамическими, менять их из консоли или использовать несколько yaml файлов с разными параметрами(prod, test). Качаем файл с офф сайта в директорию, и запускаем из строки команду helm
+
+![Image alt](https://github.com/Shell26/Java-Developer/raw/master/img/docker3.png)
+
+```java
+helm create Chart-Auto  /автогенерация, много лишнего для начала
+```
+Например возьму yaml файл с описанием Deployments и сделаю динамическими поля с названием проекта (берется из команды, при осздании Деплоимента) "image" и "replicaCount". Значения по-умолчанию хранятся в values.yaml
+
+deploymets.yaml :
+```java
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+    name: {{ .Release.Name }}-deployment    //.Release.Name берется из имени Деплоимента, когда создаем
+    labels:
+        app : {{ .Release.Name }}-application
+spec:
+    replicas: {{ .Values.replicaCount }}              
+    selector:                
+        matchLabels:         
+            project: {{ .Release.Name }}   
+    template:                
+        metadata:
+            labels:
+                project: {{ .Release.Name }}
+    spec:
+        containers:
+            - name : {{ .Release.Name }}-web
+              image: {{ .Values.container.image }}
+              ports:
+                - containerPort: 80
+```
+values.yaml :
+```java
+container:
+    image: dockerhub/web1
+
+replicaCount: 2
+```
+
+Запускаем Helm :
+```java
+helm install name1 path-to-Chart/  
+helm list
+
+helm install name2 path-to-Chart/ --set container.image=dockerhub/web2 --set replicaCount=3  - перезапускаем меняя параметры
+helm upgrade name2 path-to-Chart/ --set replicaCount=4  - обновляем
+helm install name3 path-to-Chart/ -f prod_values.yaml  - берем не дефолтные значения, а из другого yaml файла
+
+helm package path-to-Chart/  - упаковывает в файл path-to-Chart-0.1.0.tgz
+helm install name4 -f path-to-Chart-0.1.0.tgz  - запускаем из файла
+```
+
+Можно брать готовые Helm Charts из сети
+```java
+helm search repo  - ищет в конкретном репозитории
+helm repo add bitnami https://charts.bitname.com/bitnami  - добавляем репо bitnami
+helm install name123 bitnami/apache
+        
+helm search hub apache  - ищет в общем хабе
+```
+[к оглавлению](#Docker)
+
